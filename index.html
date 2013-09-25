@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=1024" />
+    <script type="text/javascript" src="solpeo.js"></script>
+    <script src="presentation.js" type="text/javascript"></script>
+    <script src="prettify/prettify.js" type="text/javascript"></script>
+    <script type="text/javascript" src="arkanoid.js"></script>
+
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+    <link rel="stylesheet" href="sons-of-obsidian.css" type="text/css"/>
+    <title></title>
+</head>
+<body onload="impress().init();">
+    <div id="impress">
+
+        <div id="title" class="step slide nologo" data-x="-1000" data-y="0">
+            <img src="images/logo_big.png" alt="Solpeo Logo"/>
+            <i>Create a Game in 15 Minutes</i>
+        </div>
+
+        <div id="intro_solpeo" class="step slide" data-x="2500" data-y="0">
+            <h1>Solpeo</h1>
+            <ul>
+                <li>Founded in 2009</li>
+                <li>Created a map-based MMO game</li>
+                <li>Currently develops a JavaScript engine (pre-release available) and a real-time multiplayer backend (still in development)</li>
+            </ul>
+        </div>
+
+        <div id="intro_engine" class="step slide" data-x="3500" data-y="0">
+            <h1>Solpeo Engine</h1>
+            <ul>
+                <li>Fully written in vanilla JavaScript</li>
+                <li>Abstract API</li>
+                <li>Platform Independent</li>
+                <li>Many cool features</li>
+            </ul>
+        </div>
+
+        <div id="develop_once" class="step slide" data-x="4500" data-y="0">
+            <div class="slogan"><span>develop</span><span>once</span></div>
+        </div>
+
+        <div id="play_anywhere" class="step slide" data-x="4500" data-y="1000" data-rotate="90">
+            <img src="images/play-anywhere.png" alt=""/>
+            <div class="slogan"><span>play</span><span>anywhere</span></div>
+        </div>
+
+        <div id="features_title" class="step slide" data-x="6000" data-y="0">
+            <h1>Features</h1>
+        </div>
+
+        <div id="features_2d" class="step slide features" data-x="7000" data-y="0">
+            <h1>2D Drawing</h1>
+            <img style="height: 500px;" src="images/gradients.png" alt="Gradients"/>
+            <i>Draw 2D shapes in code</i>
+        </div>
+
+        <div id="features_path1" class="step slide features" data-x="8000" data-y="0">
+            <h1>Pathfinding</h1>
+            <img src="images/venezuela.png" alt="Venezuela Map"/>
+            <i>Map: Google, Terrametrics</i>
+        </div>
+
+        <div id="features_path2" class="step slide features" data-x="8000" data-y="1000">
+            <h1>Pathfinding</h1>
+            <img src="images/pathfinding-gray-scale.png" alt="Venezuela Map"/>
+            <i>Cost map for the pathfinding algorithm</i>
+        </div>
+
+        <div id="features_path3" class="step slide features" data-x="8000" data-y="2000">
+            <h1>Pathfinding</h1>
+            <div class="livedemo">
+                <div id="pathfinding_demo"></div>
+            </div>
+            <i>Map: Google, Terrametrics</i>
+            <script type="text/javascript">
+                Engine.ready(function(){
+                    demoSlides.pathfinding_demo.init('pathfinding_demo');
+                });
+            </script>
+        </div>
+
+        <div id="features_isometric" class="step slide features" data-x="9000" data-y="0">
+            <h1>Isometric Drawing</h1>
+            <img src="images/isometric.png" alt="Canvas Knight"/>
+            <i>Our isometric demonstrator game</i>
+        </div>
+
+        <div id="features_scenemgt" class="step slide features" data-x="10000" data-y="0">
+            <h1>Scene Management</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">scene.appendChild(new Engine.Transform.Anchor({
+  width: 100,
+  height: 50,
+  anchors: {
+    'left': 'parent.left',
+    'top': 'parent.top'
+  },
+  marginLeft: 50,
+  marginTop: 50
+}));
+
+scene.appendChild(new Engine.Transform.Anchor({
+  width: 100,
+  height: 100,
+  anchors: {
+    'top': 'prev.bottom',
+    'left': 'parent.left'
+  },
+  marginLeft: 50,
+  marginTop: 100
+}));</code></pre>
+            <i>Use anchors to position elements relative to each other</i>
+        </div>
+
+        <div id="features_sprite" class="step slide features" data-x="11000" data-y="0">
+            <h1>Animation helpers</h1>
+            <div class="livedemo">
+                <div id="demo_sprite"></div>
+            </div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+                    demoSlides.spriteanimation_demo.init('demo_sprite');
+                });
+
+                document.getElementById('features_sprite').addEventListener('impress:stepenter', function(){
+                    demoSlides.spriteanimation_demo.start();
+                });
+
+                document.getElementById('features_sprite').addEventListener('impress:stepleave', function(){
+                    demoSlides.spriteanimation_demo.stop();
+                });
+            </script>
+            <i>Animation helpers</i>
+        </div>
+
+        <div id="features_input" class="step slide features" data-x="12000" data-y="0">
+            <h1>Input Handling</h1>
+            <div id="arkanoid_demo"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+                    demoSlides.arkanoid_demo.init('arkanoid_demo');
+                });
+
+                document.getElementById('features_input').addEventListener('impress:stepenter', function(){
+                    demoSlides.arkanoid_demo.start();
+                });
+
+                document.getElementById('features_input').addEventListener('impress:stepleave', function(){
+                    demoSlides.arkanoid_demo.stop();
+                });
+            </script>
+            <i>Press 'A' or 'D' to move the paddle</i>
+        </div>
+
+        <div id="features_particles" class="step slide features" data-x="13000" data-y="0">
+            <h1>Particles</h1>
+            <div class="livedemo">
+                <div id="demo_particles"></div>
+            </div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+                    demoSlides.particles_demo.init('demo_particles');
+                });
+
+                document.getElementById('features_particles').addEventListener('impress:stepenter', function(){
+                    demoSlides.particles_demo.start();
+                });
+
+                document.getElementById('features_particles').addEventListener('impress:stepleave', function(){
+                    demoSlides.particles_demo.stop();
+                });
+            </script>
+        </div>
+
+        <div id="features_ui" class="step slide features" data-x="14000" data-y="0">
+            <h1>User Interface</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">var camera = new Engine.Camera();
+
+scene.appendChild(new Engine.UI.Layout({
+  name: 'ui',
+  fill: camera
+}));
+
+scene.ui.appendChild(new Engine.UI.Box({
+  height: 100,
+  anchors: {
+    'fillwidth': 'parent',
+    'bottom': 'parent.bottom'
+  },
+  marginBottom: 10
+}));
+
+scene.ui.appendChild(new Engine.UI.Box({
+  width: 100,
+  height: 100,
+  anchors: {
+    'bottom': 'prev.top',
+    'left': 'parent.left'
+  },
+  marginLeft: 50
+}));</code></pre>
+            <i>Scales and positions elements automatically</i>
+        </div>
+
+        <div id="features_network" class="step slide features" data-x="15000" data-y="0">
+            <h1>Networking</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">getHighscores = function()
+{
+  var request = new Engine.Network.Resource({
+    src: 'http://server.example.com',
+    method: Engine.Network.Resource.GET,
+    type: Engine.Network.Resource.JSON,
+    on: {
+      load: function(data){
+        console.log(JSON.stringify(data));
+      }
+    }
+  })
+}</code></pre>
+            <i>Abstracted networking</i>
+        </div>
+
+        <div id="features_storage" class="step slide features" data-x="16000" data-y="0">
+            <h1>Storage</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">var KEY = 'Insert foot where?';
+var VALUE = 'Ask Red Forman';
+
+Engine.Storage.set(KEY, VALUE, Engine.Storage.TEXT, function(){
+
+ 	Engine.Storage.get(KEY, function(value){
+
+ 	  alert(value === VALUE); // true
+
+ 	});
+
+});</code></pre>
+            <i>Access multiple storage backends using a single API</i>
+        </div>
+
+        <div id="features_timer" class="step slide features" data-x="17000" data-y="0">
+            <h1>Advanced Timers</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">var timer = new Engine.Timer({
+  autoplay: true,
+  loop: true,
+  iterations: 2,
+  duration: 500,
+  delay: 250,
+  on:
+  {
+    step: function() { 
+      console.log('Progress: ' + this.progress)
+    },
+    loop: function() { 
+      console.log('Loop finished')
+    }
+  }
+});</code></pre>
+            <i>Our timers can do everything, extend them with a plugin and they'll make you coffee</i>
+        </div>
+
+        <div id="tutorial_title" class="step slide" data-x="19000" data-y="0">
+            <h1>Now let us show you how to create your game with us</h1>
+        </div>
+
+        <div id="tutorial_1" class="step slide tutorial" data-x="20000" data-y="0">
+            <h1>#1 - Create Viewport and Scene</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">var viewport = new Engine.Viewport({
+  id: 'viewport',
+  background: 'black'
+});
+
+var camera = new Engine.Camera({
+  scrollable: true
+});
+
+viewport.addCamera(camera);
+
+var scene = new Engine.Scene();
+
+camera.lookAt(scene);</code></pre>
+        </div>
+
+        <div id="tutorial_2" class="step slide tutorial" data-x="21000" data-y="0">
+            <h1>#2 - Create Root Node</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">var layout = new Engine.Node();
+
+scene.appendChild(layout);</code></pre>
+        </div>
+
+        <div id="tutorial_3" class="step slide tutorial" data-x="22000" data-y="0">
+            <h1>#3 - Draw Borders</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">var AREA = {
+  left: -400,
+  top: -300,
+  width: 800,
+  height: 600
+};
+
+var BORDER = 30;
+
+var top_bar = new Engine.Geometry.Rectangle({
+  parent: layout,
+  left: AREA.left,
+  top: AREA.top,
+  width: AREA.width,
+  height: BORDER,
+  fill: 'image(assets/images/bricks.png)'
+});
+
+// Same for left_bar and right_bar</code></pre>
+        </div>
+
+        <div id="tutorial_3_live" class="step slide features" data-x="22000" data-y="1000" data-z="-1">
+            <div id="tutorial_3_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_3_live_viewport', 'borders');
+
+                    document.getElementById('tutorial_3_live').addEventListener('impress:stepenter', function(){
+                       //game.play();
+                    });
+
+                    document.getElementById('tutorial_3_live').addEventListener('impress:stepleave', function(){
+                        //game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="tutorial_4" class="step slide tutorial" data-x="23000" data-y="0">
+            <h1>#4 - Create Paddle and Ball</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">// CREATE PADDLE
+var paddle = new Engine.Geometry.Rectangle({
+  parent: layout,
+  fill: 'image(assets/images/paddle.png)',
+  width: 120,
+  height: 20
+});
+
+// CREATE A BALL
+var ball = new Engine.Geometry.Oval({
+  parent: layout,
+  fill: 'green',
+  radius: 11
+});</code></pre>
+        </div>
+
+        <div id="tutorial_4_live" class="step slide features" data-x="23000" data-y="1000">
+            <div id="tutorial_4_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_4_live_viewport', 'paddle&ball');
+
+                    document.getElementById('tutorial_4_live').addEventListener('impress:stepenter', function(){
+                       //game.play();
+                    });
+
+                    document.getElementById('tutorial_4_live').addEventListener('impress:stepleave', function(){
+                        //game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="tutorial_4b" class="step slide tutorial" data-x="23000" data-y="2000">
+            <h1>#4 - Initialize it</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">// SET PADDLE POSITION
+var padd_left = - paddle.width / 2 + AREA.left + AREA.width / 2;
+var paddle_top = AREA.top + AREA.height - paddle.height;
+
+paddle.setPosition(padd_left, paddle_top);
+
+// SET BALL POSITION
+var ball_left = paddle.left + paddle.width / 2 - ball.width / 2;
+var ball_top = paddle.top - ball.height;
+
+ball.setPosition(ball_left, ball_top);</code></pre>
+        </div>
+
+        <div id="tutorial_4b_live" class="step slide features" data-x="23000" data-y="3000" data-z="-1">
+            <div id="tutorial_4b_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_4b_live_viewport', 'init paddle&ball');
+
+                    document.getElementById('tutorial_4b_live').addEventListener('impress:stepenter', function(){
+                       //game.play();
+                    });
+
+                    document.getElementById('tutorial_4b_live').addEventListener('impress:stepleave', function(){
+                        //game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="tutorial_5" class="step slide tutorial" data-x="24000" data-y="0">
+            <h1>#5 - Prepare Bricks</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">var BRICKS_X = 12;
+var BRICKS_Y = 5;
+var BRICKS_MARGIN = 25;
+
+var BRICK_WIDTH =  (AREA.width - 2 * BORDER - (BRICKS_X + 1)
+           * BRICKS_MARGIN) / BRICKS_X;
+var BRICK_HEIGHT = (AREA.height / 2 - 2 * BORDER - (BRICKS_Y + 1)
+           * BRICKS_MARGIN) / BRICKS_Y;
+
+// list of bricks instances, we'll fill this in the next step
+var bricks = [];
+
+function randomColor(){
+
+  return ['red', 'orange','yellow'].random();
+
+}</code></pre>
+        </div>
+
+        <div id="tutorial_6" class="step slide tutorial" data-x="25000" data-y="0">
+            <h1>#6 - Initialize Bricks</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">function initBricks(){
+
+  while(bricks.length) bricks.pop().destroy();
+
+  for (var i = 0; i < BRICKS_X; i++){
+
+    for (var j = 0; j < BRICKS_Y; j++) {
+
+      var left = 2 * BORDER + AREA.left + i * BRICKS_MARGIN + i
+              * BRICK_WIDTH;
+      var top = 2 * BORDER + AREA.top + j * BRICKS_MARGIN + j
+              * BRICK_HEIGHT;
+
+      bricks.push(new Engine.Geometry.Rectangle({
+        parent: layout,
+        fill: randomColor(),
+        left: left,
+        top: top,
+        width: BRICK_WIDTH,
+        height: BRICK_HEIGHT
+      }));
+
+    }
+  }
+}</code></pre>
+        </div>
+
+        <div id="tutorial_6_live" class="step slide features" data-x="25000" data-y="1000" data-z="-1">
+            <div id="tutorial_6_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_6_live_viewport', 'bricks');
+
+                    document.getElementById('tutorial_6_live').addEventListener('impress:stepenter', function(){
+                       //game.play();
+                    });
+
+                    document.getElementById('tutorial_6_live').addEventListener('impress:stepleave', function(){
+                        //game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="tutorial_7" class="step slide tutorial" data-x="26000" data-y="0">
+            <h1>#7 - Initialize Game Loop</h1>
+    <pre class="prettyprint linenums"><code class="language-javascript">var game = new Engine.Timer({
+  type: Engine.Timer.VSYNC,
+  loop: true
+});</code></pre>
+        </div>
+
+        <div id="tutorial_input" class="step slide tutorial" data-x="27000" data-y="0">
+            <h1>#8 - Handling Input</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">var PADDLE_SPEED = 0,
+  PADDLE_ACCELERATION = 0.4;
+
+// key pressed
+Engine.Input.on('keydown', function(e){
+  switch(e.key){
+    case 'A':
+      PADDLE_SPEED -= PADDLE_ACCELERATION; break;
+    case 'D':
+      PADDLE_SPEED += PADDLE_ACCELERATION; break;
+  }
+
+// key release
+}).on('keyup', function (e){
+  switch(e.key){
+    case 'A':
+       PADDLE_SPEED += PADDLE_ACCELERATION; break;
+    case 'D':
+       PADDLE_SPEED -= PADDLE_ACCELERATION; break;
+  }
+});</code></pre>
+        </div>
+
+        <div id="tutorial_input2" class="step slide tutorial" data-x="27000" data-y="1000">
+            <h1>#8 - Handling Input - update paddle</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">// update paddle position
+game.on('step', function(){
+  var dt = this.stepprogress;
+  var left = Math.max(left_bar.right,
+          Math.min(paddle.left + dt * PADDLE_SPEED,
+            right_bar.left - paddle.width)
+        );
+  paddle.setPosition(left, paddle.top);
+});</code></pre>
+        </div>
+
+        <div id="tutorial_input_live" class="step slide features" data-x="27000" data-y="2000" data-z="-1">
+            <div id="tutorial_input_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_input_live_viewport', 'loop');
+
+                    document.getElementById('tutorial_input_live').addEventListener('impress:stepenter', function(){
+                        game.play();
+                    });
+
+                    document.getElementById('tutorial_input_live').addEventListener('impress:stepleave', function(){
+                        game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="tutorial_9" class="step slide tutorial" data-x="28000" data-y="0">
+            <h1>#9 - Moving the Ball</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">var BALL_ACCELERATION = 0.25,
+  BALL_SPEED_X = BALL_ACCELERATION * [-1, 1].random(),
+  BALL_SPEED_Y = 0;
+
+game.on('step', function(){
+
+  var dt = this.stepprogress;
+
+  ball.setPosition(ball.left + dt * BALL_SPEED_X,
+           ball.top + dt * BALL_SPEED_Y);
+
+});</code></pre>
+        </div>
+
+        <div id="tutorial_9_live" class="step slide features" data-x="28000" data-y="1000" data-z="-1">
+            <div id="tutorial_9_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_9_live_viewport', 'move ball');
+
+                    game.on('play', game.initBall);
+
+                    document.getElementById('tutorial_9_live').addEventListener('impress:stepenter', function(){
+                        game.play();
+                    });
+
+                    document.getElementById('tutorial_9_live').addEventListener('impress:stepleave', function(){
+                        game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="tutorial_10a" class="step slide tutorial" data-x="29000" data-y="0">
+            <h1>#10 - Detect Collisions</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">function overlap(a, b){
+
+  return Engine.Box.overlap(a.left, a.top, a.width, a.height,
+                b.left, b.top, b.width, b.height)
+
+}</code></pre>
+        </div>
+
+        <div id="tutorial_10b" class="step slide tutorial" data-x="29000" data-y="1000">
+            <h1>#10 - Detect Collisions</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">game.on('step', function(){
+
+  if(overlap(ball, top_bar) || overlap(ball, paddle)){
+    BALL_SPEED_Y *= -1;
+    game.trigger('bounce');
+  }
+
+  if(overlap(ball, left_bar) || overlap(ball, right_bar)){
+    BALL_SPEED_X *= -1;
+    game.trigger('bounce');
+  }
+
+  if(!overlap(ball, AREA))
+    game.trigger('over');
+})</code></pre>
+        </div>
+
+        <div id="tutorial_11" class="step slide tutorial" data-x="30000" data-y="0">
+            <h1>#11 - Handle Collisions</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">function collide(brick){
+
+  if (overlap(ball, brick)){
+
+    game.trigger('hit', brick);
+
+    bricks.remove(brick);
+    brick.destroy();
+
+    if (!bricks.length)
+
+      game.trigger('success');
+
+    if (Math.random() < 0.5)
+
+      BALL_SPEED_X *= -1;
+
+    else
+
+      BALL_SPEED_Y *= -1;
+
+    return true;
+
+  }
+
+  return false;
+
+}</code></pre>
+        </div>
+
+        <div id="tutorial_11b" class="step slide tutorial" data-x="30000" data-y="1000">
+            <h1>#11 - Handle Collisions</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">// COLLIDE BALL WITH ANY OF BRICKS
+game.on('step', function(){
+  bricks.some(collide);
+});</code></pre>
+        </div>
+
+        <div id="tutorial_11_live" class="step slide features" data-x="30000" data-y="2000" data-z="-1">
+            <div id="tutorial_11_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_11_live_viewport', 'collisions');
+
+                    game.on('play', game.initBricks);
+                    game.on('play', game.initBall);
+
+                    document.getElementById('tutorial_11_live').addEventListener('impress:stepenter', function(){
+                        game.play();
+                    });
+
+                    document.getElementById('tutorial_11_live').addEventListener('impress:stepleave', function(){
+                        game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="tutorial_12" class="step slide tutorial" data-x="31000" data-y="0">
+            <h1>#12 - Game-over and start game</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">game.on('over', function(){
+
+  game.stop();
+
+  setTimeout(initGame, 3000);
+
+});
+
+// initialize game
+function initGame(){
+
+  initBricks();
+  initPaddle();
+  initBall();
+
+  game.play();
+
+}
+
+initGame();</code></pre>
+        </div>
+
+        <div id="tutorial_13" class="step slide tutorial" data-x="32000" data-y="0">
+            <h1>#13 - Sounds</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">var sounds = {
+  collision: new Engine.Sound({
+     src: "assets/sounds/collision"
+  }),
+  bounce: new Engine.Sound({
+     src: "assets/sounds/bounce"
+  })
+};
+
+game.on('bounce', function(){
+
+  sounds.bounce.stop();
+  sounds.bounce.play();
+
+}).on('hit', function(){
+
+  sounds.collision.stop();
+  sounds.collision.play();
+
+});</code></pre>
+        </div>
+
+        <div id="tutorial_13_live" class="step slide features" data-x="32000" data-y="1000" data-z="-1">
+            <div id="tutorial_13_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_13_live_viewport', 'sounds');
+
+                    game.on('play', game.initBricks);
+                    game.on('play', game.initBall);
+
+                    document.getElementById('tutorial_13_live').addEventListener('impress:stepenter', function(){
+                        game.play();
+                    });
+
+                    document.getElementById('tutorial_13_live').addEventListener('impress:stepleave', function(){
+                        game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="tutorial_particles" class="step slide tutorial" data-x="33000" data-y="0">
+            <h1>#14 - Particles</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">game.on('hit', function(brick){
+
+  // size of emitter geometry
+  var width = 4 * brick.width;
+  var height = 4 * brick.height;
+
+  new Engine.Particles({
+    parent: layout,
+    iterations: 5,
+    emitDelay: 50,
+    redrawDelay: 1,
+    width: width,
+    height: height,
+    left: brick.left + brick.width / 2 - width / 2,
+    top: brick.top + brick.height / 2 - height / 2,
+    amount: 15,
+    on: {
+      beforecreateparticle: function(i){
+
+        this.lifetime = Math.random() * 500 + 900;
+        this.originX = Math.random() * 20 - 10 + width / 2;
+        this.originY = Math.random() * 20 - 10 + height / 2;
+        this.dx = (Math.random() - 0.5)  * width;
+        this.dy = (Math.random() - 0.5) * height;
+        this.fill = brick.color + ' 5px 5px';
+        this.opacity = Math.random() / 2;
+      }
+    }
+  });
+});</code></pre>
+        </div>
+
+        <div id="tutorial_particles_live" class="step slide features" data-x="33000" data-y="1000" data-z="-1">
+            <div id="tutorial_particles_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_particles_live_viewport', 'particles');
+
+                    game.on('play', game.initBricks);
+                    game.on('play', game.initBall);
+
+                    document.getElementById('tutorial_particles_live').addEventListener('impress:stepenter', function(){
+                        game.play();
+                    });
+
+                    document.getElementById('tutorial_particles_live').addEventListener('impress:stepleave', function(){
+                        game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="tutorial_15" class="step slide tutorial" data-x="34000" data-y="0">
+            <h1>#15 - Isometric Mode</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">var layout = new Engine.Isometry.Transform.Z();
+
+scene.appendChild(layout);</code></pre>
+        </div>
+
+        <div id="tutorial_15_live" class="step slide features" data-x="34000" data-y="1000" data-z="-1">
+            <div id="tutorial_15_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_15_live_viewport', 'isometry');
+
+                    game.on('play', game.initBricks);
+                    game.on('play', game.initBall);
+
+                    document.getElementById('tutorial_15_live').addEventListener('impress:stepenter', function(){
+                        game.play();
+                    });
+
+                    document.getElementById('tutorial_15_live').addEventListener('impress:stepleave', function(){
+                        game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="tutorial_16" class="step slide tutorial" data-x="35000" data-y="0">
+            <h1>#Bonus - Drunk Mode</h1>
+            <pre class="prettyprint linenums"><code class="language-javascript">var layout = new Engine.Isometry.Transform.Z({
+  parent: scene
+});
+
+var angle = 0;
+
+game.on('step', function(){
+
+  angle += Math.PI / 180;
+
+  Engine.Isometry.TILE_WIDTH = (Math.cos(angle) - 0.5) * 64;
+  Engine.Isometry.TILE_HEIGHT = (Math.sin(angle) - 0.5) * 32;
+
+  layout.set('align', 'x').set('align', 'z');
+
+});</code></pre>
+        </div>
+
+        <div id="tutorial_16_live" class="step slide features" data-x="35000" data-y="1000" data-z="-1">
+            <div id="tutorial_16_live_viewport"></div>
+            <script type="text/javascript">
+                Engine.ready(function(){
+
+                    var game = arkanoid('tutorial_16_live_viewport', 'psychedelic');
+
+                    game.on('play', game.initBricks);
+                    game.on('play', game.initBall);
+
+                    document.getElementById('tutorial_16_live').addEventListener('impress:stepenter', function(){
+                        game.play();
+                    });
+
+                    document.getElementById('tutorial_16_live').addEventListener('impress:stepleave', function(){
+                        game.stop();
+                    });
+
+                });
+            </script>
+        </div>
+
+        <div id="competition" class="step slide" data-x="40000" data-scale="4" data-y="0">
+            <img src="images/competition-slide.png" alt="Competition"/>
+            <i>Solpeo Challenges the World</i>
+            <div>Create a game before September 30th, and win a Nexus 7</div>
+        </div>
+
+        <div id="thanks" class="step slide nologo" data-x="45000" data-scale="4" data-y="0">
+            <img src="images/logo_big.png" alt="Solpeo Logo"/>
+            <i>Thank you for your attention</i>
+            <div><span>e.haagsman@solpeo.com</span><span>piotr.sadowski@solpeo.com</span></div>
+            <div class="socialmedia"><span>Twitter</span>solpeo_engine <span>Facebook</span>Solpeo</div>
+        </div>
+
+    </div>
+    <script type="text/javascript" src="impress.js"></script>
+    <script type="text/javascript">prettyPrint();</script>
+</body>
+</html>
