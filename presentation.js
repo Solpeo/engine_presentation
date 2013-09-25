@@ -655,7 +655,7 @@ var demoSlides = {
                 PI = Math.PI;
 
             /** Main config */
-            var BASE_URI = '/pres/';
+            var BASE_URI = '/engine_presentation/';
 
             /** Helpers */
             function getRandom(from, to){
